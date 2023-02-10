@@ -1,0 +1,36 @@
+<% if messages.length > 0
+    messages.each do |message| %>
+    
+    <div class="message">
+        <h3><%= message["message_sender"] %> - <%= message["created_at"].strftime('%m/%d/%Y %I:%M%p') %></h3>
+        <p><%= message["message"] %></p>
+
+        <% if message["user_id"] === session[:user_id] %>
+            <button class="delete_message_btn" data-message_id="<%= message["message_id"] %>" data-message_user_id="<%= message["user_id"] %>" >Delete message</button>
+        <% end %>
+    </div>
+
+    <%= render partial: "comment/comment", locals: {comments: message["comment"], message_id: message["message_id"] } %>
+    <% end %>
+<% end %>
+
+<form action="/message_delete" id="message_delete" method="POST">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" class="message_id_del" name="message_id" value="">
+    <input type="hidden" class="message_user_id_del" name="message_user_id" value="">
+    <input type="submit" value="Delete a Message" hidden="hidden">
+</form>
+
+<form action="/comment_delete" id="comment_delete"  method="POST">
+    <input type="hidden" name="_method" value="delete">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" class="comment_id_del" name="comment_id" value="">
+    <input type="hidden" class="comment_user_id_del" name="comment_user_id" value="">
+    <input type="submit" value="Delete a Comment" hidden="hidden">
+</form>
+
+
+
+
+

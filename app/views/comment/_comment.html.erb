@@ -1,0 +1,30 @@
+<% if !comments.nil?
+    comments = JSON.parse(comments)
+
+    comments.each do |id, value|
+        value["created_at"] = DateTime.parse(value["created_at"])
+        %>
+
+        <div class="comment">
+            <h3> <%= value["comment_sender"] %> - <%= value["created_at"].strftime('%m/%d/%Y %I:%M%p') %></h3>
+            <p><%= value["comment"] %></p>
+            
+            <% if value["user_id"] === session[:user_id] %>
+                <button class="delete_comment_btn" data-comment_id="<%= id %>" data-comment_user_id="<%= value["user_id"] %>" >Delete comment</button>
+            <% end %>
+        </div>
+    <% end %>
+
+<% end %>
+
+<% if !message_id.nil? %>
+    <div class="textcomment">
+        <form action="/comment_post" id="comment_post" method="POST">
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <input type="hidden" name="user_id" value="<%= session[:user_id] %>">
+            <input type="hidden" name="message_id" value="<%= message_id %>">
+            <textarea name="comment" placeholder="Post a comment"></textarea>
+            <input type="submit" value="Post a comment">
+        </form>
+    </div>
+<% end %>

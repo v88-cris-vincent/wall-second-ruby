@@ -1,0 +1,26 @@
+<header>
+    <div id="left">
+        <h1>CodingDojo Wall</h1>
+    </div>
+    
+    <div id="right">
+        <p>Welcome <%= session[:first_name] %></p>
+        <a href="logout">log off</a>
+    </div>
+</header>
+
+<hr>
+
+<h2>Post a message</h2>
+<form action="/message_post" id="message_post" method="POST">
+    <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+    <input type="hidden" name="user_id" value="<%= session[:user_id] %>">
+    <textarea name="message" placeholder="Post a message"></textarea>
+    <input type="submit" value="Post a message">
+</form>
+
+<div id="wrapper">
+
+    <%= render partial: "message", locals: {messages: @messages[:result]} %>
+    
+</div>

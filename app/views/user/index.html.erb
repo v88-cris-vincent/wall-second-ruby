@@ -1,0 +1,54 @@
+<div id="wrapper">
+    <h1>Login</h1>
+
+        <form action="/login" id="login_form" method="POST">
+        <table>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <tr>
+                <td><label for="email_address">Email Address:</label></td>
+                <td><input type="text" name="email_address" value="test@test.com" ></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" name="password" value="" ></td>
+            </tr> 
+            <tr>
+                <td colspan=2><input type="submit" value="Login"></td>
+            </tr> 
+        </table>
+        </form>
+
+    <hr>
+
+    <h1>Registration Form</h1>
+
+        <form action="/register" id="registration_form" method="POST">
+        <table>
+            <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
+            <tr>
+                <td><label for="first_name">First Name:</label></td>
+                <td><input type="text" name="first_name" value="Cris" ></td>
+            </tr>
+            <tr>
+                <td><label for="last_name">Last Name:</label></td>
+                <td><input type="text" name="last_name" value="Castro" ></td>
+            </tr>
+            <tr>
+                <td><label for="email_address">Email Address:</label></td>
+                <td><input type="text" name="email_address" value="test@test.com" ></td>
+            </tr>
+            <tr>
+                <td><label for="password">Password:</label></td>
+                <td><input type="password" name="password" value="" ></td>
+            </tr>
+            <tr>
+                <td><label for="confirm_password">Confirm Password:</label></td>
+                <td><input type="password" name="confirm_password" value="" ></td>
+            </tr> 
+            <tr>
+                <td colspan=2><input type="submit" value="Register"></td>
+            </tr> 
+        </table>
+        </form>
+
+</div>
